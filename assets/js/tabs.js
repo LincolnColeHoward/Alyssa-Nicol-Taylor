@@ -4,7 +4,7 @@ function tabConfig () {
 		bio: {btn: document.querySelector ("#bioBtn"), tab: document.querySelector ("#bioTab")},
 		cv: {btn: document.querySelector ("#cvBtn"), tab: document.querySelector ("#cvTab")}
 	};
-	var active = localStorage.activeTab || "gallery";
+	var active = "bio";
 	function activate (name) {
 		tabs [active].btn.className = "";
 		tabs [active].tab.className = "hidden";
@@ -13,7 +13,7 @@ function tabConfig () {
 		active = name;
 	}
 	activate (active);
-	tabs.gallery.btn.onclick = function () {activate ("gallery")};
+	tabs.gallery.btn.onclick = function () {activate ("gallery"); if (galleryEmpty) galleryEmpty ()};
 	tabs.bio.btn.onclick = function () {activate ("bio")};
 	tabs.cv.btn.onclick = function () {activate ("cv"); cvConfig ()};
 }

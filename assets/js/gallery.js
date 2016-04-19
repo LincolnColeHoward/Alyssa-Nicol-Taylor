@@ -1,14 +1,14 @@
-var index;
+var galleryEmpty;
 function galleryConfig () {
 	// index images by year
-	index = {};
-	function createIndex (after) {
+	var index = {};
+	function createIndex (after, ever) {
 		GET ("/galleries", function (images) {
 			for (var i = 0; i < images.length; i++) {
 				if (!index [images [i].year]) index [images [i].year] = [];
 				index [images [i].year].push (images [i]);
 			}
-			if (after) after ();
+			after (ever);
 		});
 	}
 	// create the image thumbnail view
@@ -30,8 +30,24 @@ function galleryConfig () {
 				var img = div.IMG (images [i].src);
 				div.onclick = imgOnclickEvt (img, index [year][i]);
 				display [year].push (div);
-			} 
+			}
 		}
+		after ();
+	}
+	// create an initial image function
+	function initialImage () {
+		var yearOpts = Object.keys (index);
+		console.log (yearOpts);
+		var i = Math.floor (Math.random () * yearOpts.length);
+		console.log (i);
+		i = yearOpts [i];
+		console.log (i);
+		var j = Math.floor (Math.random () * index [i].length);
+		console.log (j);
+		var img = display [i][j].children [0];
+		var data = index [i][j];
+		console.log (img, data);
+		galleryEmpty = imgOnclickEvt (img, data);
 	}
 	// hide all items in the thumbnail
 	function hideAll () {
@@ -68,8 +84,9 @@ function galleryConfig () {
 			clone.width = main.clientWidth * 0.9;
 			main.innerHTML = "";
 			main.appendChild (clone);
+			galleryEmpty = false;
 		}
 	}
-	createIndex (createThumbnail);
+	createIndex (createThumbnail, initialImage);
 }
 galleryConfig ();
