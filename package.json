@@ -1,0 +1,22 @@
+{
+  "name": "alyssa",
+  "version": "1.0.0",
+  "description": "Alyssa's art website",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start index.js -i 0 --name Alyssa"
+  },
+  "keywords": [
+    "Alyssa",
+    "Website"
+  ],
+  "author": "Lincoln Howard",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "busboy": "^0.2.13",
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
+    "node-xlsx": "^0.6.0"
+  }
+}

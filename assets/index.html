@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Alyssa Nicol Taylor</title>
+		<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+		<link rel="Stylesheet" href="css/bootstrap.css">
+		<link rel="Stylesheet" href="css/style.css">
+		<script src="js/pdf.js"></script>
+		<script src="js/reset.js"></script>
+	</head>
+	<body>
+
+		<nav id="nav" class="navbar navbar-fixed-top">
+			<div class="container">
+	      <div class="navbar-header">
+	        <a id="homeBtn" class="navbar-brand">Alyssa Nicol Taylor</a>
+	      </div>
+	      <div id="navbar" class="navbar-collapse collapse">
+	        <ul class="nav navbar-nav">
+	          <li id="galleryBtn"><a href="#">Gallery</a></li>
+	          <li id="bioBtn"><a href="#">Bio</a></li>
+	          <li id="cvBtn"><a href="#">CV</a></li>
+	        </ul>
+	      </div>
+	    </div>
+		</nav>
+
+		<div id="cvTab" class="hidden">
+			<div id="cvContainer" class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+				<canvas id="CV"></canvas>
+			</div>
+		</div>
+
+		<div id="bioTab" class="hidden">
+			<div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+				<b>Alyssa Taylor</b> was born in 1989 in Orlando. In 2013, she was accepted into the Communication Arts degree program at Virginia Commonwealth University. Taylor has also been in various important exhibitions including “Off the Chain” at Quirk Gallery, Richmond, Virginia. She was a transparent watercolor instructor at Hunter Forest School of Fine Art. This year she looks to attend South Carolina State Parks Artist in Residence 2016 program. Upcoming shows include “Legends Tribute” at Epicure Café, Fairfax, Virginia. Taylor currently lives and works in Washington, DC.
+			</div>
+		</div>
+		
+		<div id="galleryTab" class="hidden">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<table id="galleryList">
+					
+				</table>
+			</div>
+			<div id="image_container" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<table id="image_data">
+					<tr>
+						<td id="image_title"></td>
+						<td id="image_copyright"></td>
+					</tr>
+					<tr>
+						<td id="image_dimensions"></td>
+						<td id="image_media"></td>
+					</tr>
+				</table>
+				<br>
+				<div id="galleryMain"></div>
+			</div>
+			<div id="thumbnail" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				
+			</div>
+		</div>
+
+		<script src="js/tabs.js"></script>
+		<script src="js/cv.js"></script>
+		<script src="js/gallery.js"></script>
+
+	</body>
+</html>

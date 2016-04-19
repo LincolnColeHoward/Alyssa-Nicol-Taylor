@@ -1,0 +1,73 @@
+* {
+	font-family: 'Quicksand', sans-serif;
+}
+body {
+	overflow-y: scroll;
+}
+#nav {
+	z-index: 10;
+	font-weight: bold;
+	background-color: rgba(230,230,230,0.5);
+	border-radius: 0;
+	border: 0;
+}
+#thumbnail div {
+	position: relative;
+	width: 31%;
+	padding-bottom: 31%;
+	height: 0;
+	margin: 1.16%;
+	display: inline-block;
+	overflow: hidden;
+}
+#thumbnail div * {
+	opacity: 0.8;
+	width: 178%;
+}
+#thumbnail div:hover * {
+	opacity: 1;
+}
+#galleryMain {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+#galleryMain * {
+	margin: 0 5%;
+}
+#galleryList {
+	margin: 0 auto;
+	border: none;
+	font-size: 110%;
+}
+#galleryList td {
+	padding: 2% 0;
+}
+#galleryList td:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+#image_data {
+	width: 100%;
+	text-align: center;
+}
+#image_data tr {
+	margin: 0;
+	padding: 0;
+}
+#image_data td {
+	margin: 0;
+	padding: 0;
+	width: 50%;
+}
+#image_container {
+	padding: 0;
+}
+canvas {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+div.tab {
+	margin-top: 75px;
+}
