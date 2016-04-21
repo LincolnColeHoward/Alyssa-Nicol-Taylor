@@ -15,6 +15,6 @@ function tabConfig () {
 	activate (active);
 	tabs.gallery.btn.onclick = function () {activate ("gallery"); if (galleryEmpty) galleryEmpty ()};
 	tabs.bio.btn.onclick = function () {activate ("bio")};
-	tabs.cv.btn.onclick = function () {activate ("cv"); cvConfig ()};
+	tabs.cv.btn.onclick = function () {activate ("cv"); if (!cvConfig) runCvConfig (); cvConfig ()};
 }
 tabConfig ();
