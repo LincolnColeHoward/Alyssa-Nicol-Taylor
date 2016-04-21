@@ -11,7 +11,7 @@
 }
 #thumbnail div * {
 	opacity: 0.8;
-	margin: -50%;
+	margin: -25%;
 	width: 178%;
 }
 #thumbnail div:hover * {
