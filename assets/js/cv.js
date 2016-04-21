@@ -58,5 +58,4 @@ function runCvConfig () {
 		});
 	});
 }
-runCvConfig ();
 // call cvConfig when activating the tab
