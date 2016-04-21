@@ -3,7 +3,8 @@ var express = require ("express");
 var app = express ();
 app.use (require ("compression") ());
 app.use (express.static ("assets", {
-	maxage: "172800000"
+	maxage: "1728000000",
+	etag: false
 }));
 app.get ("/", function (req, res) {
 	res.redirect ("/index.html");

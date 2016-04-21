@@ -6,7 +6,7 @@ function DOM (element) {
 		ret.classList.add (list [i]);
 	return ret;
 }
-// load a css stylesheet
+// load a css stylesheet or js script
 function loadcss (href) {
 	var head = document.querySelectorAll ("head") [0];
 	var ss = DOM ("link");
@@ -17,6 +17,9 @@ function loadcss (href) {
 	setTimeout (function () {
 		ss.media = "all";
 	}, 0);
+}
+function loadjs (src) {
+	document.body.DOM ("script").src = src;
 }
 // create a dom element that is a child of this
 Element.prototype.DOM = function (element) {
