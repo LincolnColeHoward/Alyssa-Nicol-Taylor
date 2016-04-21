@@ -37,17 +37,11 @@ function galleryConfig () {
 	// create an initial image function
 	function initialImage () {
 		var yearOpts = Object.keys (index);
-		console.log (yearOpts);
 		var i = Math.floor (Math.random () * yearOpts.length);
-		console.log (i);
 		i = yearOpts [i];
-		console.log (i);
-		var j = Math.floor (Math.random () * index [i].length);
-		console.log (j);
-		var img = display [i][j].children [0];
-		var data = index [i][j];
-		console.log (img, data);
-		galleryEmpty = imgOnclickEvt (img, data);
+		galleryEmpty = function () {
+			showYear (i);
+		}
 	}
 	// hide all items in the thumbnail
 	function hideAll () {
@@ -58,6 +52,8 @@ function galleryConfig () {
 	// show all images for a year
 	function showYear (year) {
 		var divs = display [year];
+		var rand = Math.floor (Math.random () * divs.length);
+		showImage (divs [rand].children [0], index [year][rand]);
 		for (var i = 0; i < divs.length; i++)
 			divs [i].className = "thumbnail-item";
 	}
@@ -74,17 +70,23 @@ function galleryConfig () {
 	var copyright = document.querySelector ("#image_copyright");
 	var dimensions = document.querySelector ("#image_dimensions");
 	var media = document.querySelector ("#image_media");
-	function imgOnclickEvt (img, data) {
-		return function () {
+	function showImage (img, data) {
 			title.innerHTML = data.title || "";
 			copyright.innerHTML = data.copyright || "";
 			dimensions.innerHTML = data.dimensions || "";
 			media.innerHTML = data.media || "";
 			var clone = img.cloneNode ();
+			window.onresize = function () {
+				clone.width = main.clientWidth * 0.9;
+			}
 			clone.width = main.clientWidth * 0.9;
 			main.innerHTML = "";
 			main.appendChild (clone);
 			galleryEmpty = false;
+	}
+	function imgOnclickEvt (img, data) {
+		return function () {
+			showImage (img, data);
 		}
 	}
 	createIndex (createThumbnail, initialImage);
