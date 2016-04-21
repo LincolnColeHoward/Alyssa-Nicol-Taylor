@@ -6,6 +6,18 @@ function DOM (element) {
 		ret.classList.add (list [i]);
 	return ret;
 }
+// load a css stylesheet
+function loadcss (href) {
+	var head = document.querySelectorAll ("head") [0];
+	var ss = DOM ("link");
+	ss.href = href;
+	ss.rel = "stylesheet";
+	ss.media = "only x";
+	head.appendChild (ss);
+	setTimeout (function () {
+		ss.media = "all";
+	}, 0);
+}
 // create a dom element that is a child of this
 Element.prototype.DOM = function (element) {
 	var ret = DOM (element);

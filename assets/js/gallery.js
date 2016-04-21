@@ -76,10 +76,6 @@ function galleryConfig () {
 			dimensions.innerHTML = data.dimensions || "";
 			media.innerHTML = data.media || "";
 			var clone = img.cloneNode ();
-			window.onresize = function () {
-				clone.width = main.clientWidth * 0.9;
-			}
-			clone.width = main.clientWidth * 0.9;
 			main.innerHTML = "";
 			main.appendChild (clone);
 			galleryEmpty = false;
