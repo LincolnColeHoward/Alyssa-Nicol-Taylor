@@ -1,8 +1,8 @@
 // express
 var express = require ("express");
 var app = express ();
+app.use (require ("compression") ());
 app.use (express.static ("assets"));
-
 app.get ("/", function (req, res) {
 	res.redirect ("/index.html");
 });
