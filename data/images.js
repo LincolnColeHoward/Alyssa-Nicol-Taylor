@@ -25,18 +25,22 @@ var express = require ("express");
 var router = express.Router ();
 
 router.get ("/galleries", function (req, res) {
+	res.setHeader ("Cache-Control", "max-age=172800");
 	res.status (200).json (data);
 });
 
 router.get ("/galleries/length", function (req, res) {
+	res.setHeader ("Cache-Control", "max-age=172800");
 	res.status (200).json (data.length); 
 });
 
 router.get ("/galleries/:index", function (req, res) {
+	res.setHeader ("Cache-Control", "max-age=172800");
 	res.status (200).json (data [req.params.index]);
 });
 
 router.get ("/images/:index", function (req, res) {
+	res.setHeader ("Cache-Control", "max-age=172800");
 	var read = fs.createReadStream (__dirname + "/../images/" + data [req.params.index].file);
 	read.pipe (res);
 });
