@@ -1,47 +1,47 @@
 var galleryEmpty;
 function galleryConfig () {
-	// index images by year
+	// find the necessary dom elements
+	var yearlist = document.querySelector ("#galleryList");
+	var thumbnail = document.querySelector ("#thumbnail");
+	// index images and displays by year
 	var index = {};
-	function createIndex (after, ever) {
-		GET ("/galleries", function (images) {
-			for (var i = 0; i < images.length; i++) {
-				if (!index [images [i].year]) index [images [i].year] = [];
-				index [images [i].year].push (images [i]);
+	var display = {};
+	// obvious method
+	function loadContent () {
+		// get the number of galleries to load
+		GET ("/galleries/length", function (data) {
+			for (var i = 0; i < data; i++) {
+				GET ("/galleries/" + i, function (data) {
+					setIndex (data);
+					createThumbnailItem (data);
+				});
 			}
-			after (ever);
 		});
 	}
-	// create the image thumbnail view
-	var display = {};
-	function createThumbnail (after) {
-		var yearlist = document.querySelector ("#galleryList");
-		var thumbnail = document.querySelector ("#thumbnail");
-		var main = document.querySelector ("#galleryMain");
-		// generate list view for years
-		for (var year in index) {
+	// index a gallery
+	function setIndex (gallery) {
+		if (!index [gallery.year]) {
+			index [gallery.year] = [];
+			display [gallery.year] = [];
 			var td = yearlist.DOM ("tr").DOM ("td");
-			td.innerHTML = year;
-			td.onclick = yearOnclickEvt (year);
-			// generate thumbnail view for images
-			var images = index [year];
-			display [year] = [];
-			for (var i = 0; i < images.length; i++) {
-				var div = thumbnail.DOM ("div.hidden");
-				var img = div.IMG (images [i].src);
-				div.onclick = imgOnclickEvt (img, index [year][i]);
-				display [year].push (div);
-			}
+			td.innerHTML = gallery.year;
+			td.onclick = yearOnclickEvt (gallery.year);
 		}
-		after ();
+		index [gallery.year].push (gallery);
+	}
+	// separate logic for creating the thumbnail 
+	function createThumbnailItem (gallery) {
+		var div = thumbnail.DOM ("div.hidden");
+		var img = div.IMG (gallery.src);
+		div.onclick = imgOnclickEvt (img, gallery);
+		display [gallery.year].push (div);
 	}
 	// create an initial image function
-	function initialImage () {
+	galleryEmpty = function () {
 		var yearOpts = Object.keys (index);
 		var i = Math.floor (Math.random () * yearOpts.length);
 		i = yearOpts [i];
-		galleryEmpty = function () {
-			showYear (i);
-		}
+		showYear (i);
 	}
 	// hide all items in the thumbnail
 	function hideAll () {
@@ -84,11 +84,12 @@ function galleryConfig () {
 			main.appendChild (clone);
 			galleryEmpty = false;
 	}
+	// wrap showImage for events
 	function imgOnclickEvt (img, data) {
 		return function () {
 			showImage (img, data);
 		}
 	}
-	createIndex (createThumbnail, initialImage);
+	loadContent ();
 }
 galleryConfig ();
