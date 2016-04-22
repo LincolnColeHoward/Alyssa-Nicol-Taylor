@@ -11,7 +11,7 @@ function runCvConfig () {
 	// If absolute URL from the remote server is provided, configure the CORS
 	// header on that server.
 	//
-	var url = "other/CV.pdf";
+	var url = "CV.pdf";
 
 	//
 	// Disable workers to avoid yet another cross-origin issue (workers need
@@ -23,7 +23,7 @@ function runCvConfig () {
 	//
 	// The workerSrc property shall be specified.
 	//
-	PDFJS.workerSrc = "build/pdf.worker.js";
+	PDFJS.workerSrc = "pdf.worker.js";
 
 	//
 	// Asynchronous download PDF

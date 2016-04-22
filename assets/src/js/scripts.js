@@ -74,7 +74,7 @@ function tabConfig () {
 	activate (active);
 	tabs.gallery.btn.onclick = function () {activate ("gallery"); if (galleryEmpty) galleryEmpty ()};
 	tabs.bio.btn.onclick = function () {activate ("bio")};
-	tabs.cv.btn.onclick = function () {activate ("cv"); if (!cvConfig) runCvConfig (); cvConfig ()};
+	tabs.cv.btn.onclick = function () {activate ("cv"); cvConfig ()};
 }
 tabConfig ();
 /*gallery.js*/
@@ -183,7 +183,7 @@ function runCvConfig () {
 	// If absolute URL from the remote server is provided, configure the CORS
 	// header on that server.
 	//
-	var url = "other/CV.pdf";
+	var url = "CV.pdf";
 
 	//
 	// Disable workers to avoid yet another cross-origin issue (workers need
@@ -195,7 +195,7 @@ function runCvConfig () {
 	//
 	// The workerSrc property shall be specified.
 	//
-	PDFJS.workerSrc = "build/pdf.worker.js";
+	PDFJS.workerSrc = "pdf.worker.js";
 
 	//
 	// Asynchronous download PDF
