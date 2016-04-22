@@ -1,8 +1,6 @@
 var cvConfig = null;
-/*
- initial code stolen from mozilla!
- thanks!
-*/
+//initial code stolen from mozilla!
+//thanks!
 function runCvConfig () {
 	//
 	// get the container for the CV
@@ -25,7 +23,7 @@ function runCvConfig () {
 	//
 	// The workerSrc property shall be specified.
 	//
-	PDFJS.workerSrc = "js/pdf.worker.js";
+	PDFJS.workerSrc = "build/pdf.worker.js";
 
 	//
 	// Asynchronous download PDF
@@ -58,4 +56,5 @@ function runCvConfig () {
 		});
 	});
 }
+runCvConfig ();
 // call cvConfig when activating the tab

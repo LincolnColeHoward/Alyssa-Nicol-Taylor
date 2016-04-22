@@ -1,3 +1,19 @@
+/*
+  This file is included as minified and included as inline css
+*/
+* {
+	font-family: 'Quicksand', sans-serif;
+}
+body {
+	overflow-y: scroll;
+}
+#nav {
+	z-index: 10;
+	font-weight: bold;
+	background-color: rgba(230,230,230,0.5);
+	border-radius: 0;
+	border: 0;
+}
 #thumbnail div {
 	position: relative;
 	width: 31%;
@@ -58,4 +74,7 @@ canvas {
 	width: 100%;
 	margin: 0;
 	padding: 0;
+}
+div.tab {
+	margin-top: 75px;
 }
