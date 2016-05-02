@@ -1,4 +1,16 @@
 function tabConfig () {
+	var marginTop = document.querySelector ("#nav").clientHeight * 1.25;
+	var tabHeight = document.querySelectorAll ("head") [0].DOM ("style");
+	tabHeight.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
+	function setTabHeight () {
+		var marginTop = document.querySelector ("#nav").clientHeight * 1.25;
+		var ss = DOM ("style");
+		ss.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
+		document.querySelectorAll ("head") [0].replaceChild (ss, tabHeight);
+		tabHeight = ss;
+	}
+	setTabHeight ();
+	window.addEventListener ("resize", setTabHeight, false);
 	var tabs = {
 		gallery: {btn: document.querySelector ("#galleryBtn"), tab: document.querySelector ("#galleryTab")},
 		bio: {btn: document.querySelector ("#bioBtn"), tab: document.querySelector ("#bioTab")},

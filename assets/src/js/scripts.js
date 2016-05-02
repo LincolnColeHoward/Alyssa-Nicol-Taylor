@@ -7,21 +7,6 @@ function DOM (element) {
 		ret.classList.add (list [i]);
 	return ret;
 }
-// load a css stylesheet or js script
-function loadcss (href) {
-	var head = document.querySelectorAll ("head") [0];
-	var ss = DOM ("link");
-	ss.href = href;
-	ss.rel = "stylesheet";
-	ss.media = "only x";
-	head.appendChild (ss);
-	setTimeout (function () {
-		ss.media = "all";
-	}, 0);
-}
-function loadjs (src) {
-	document.body.DOM ("script").src = src;
-}
 // create a dom element that is a child of this
 Element.prototype.DOM = function (element) {
 	var ret = DOM (element);
@@ -58,6 +43,18 @@ function GET (route, cb, err) {
 }
 /*tabs.js*/
 function tabConfig () {
+	var marginTop = document.querySelector ("#nav").clientHeight * 1.25;
+	var tabHeight = document.querySelectorAll ("head") [0].DOM ("style");
+	tabHeight.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
+	function setTabHeight () {
+		var marginTop = document.querySelector ("#nav").clientHeight * 1.25;
+		var ss = DOM ("style");
+		ss.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
+		document.querySelectorAll ("head") [0].replaceChild (ss, tabHeight);
+		tabHeight = ss;
+	}
+	setTabHeight ();
+	window.addEventListener ("resize", setTabHeight, false);
 	var tabs = {
 		gallery: {btn: document.querySelector ("#galleryBtn"), tab: document.querySelector ("#galleryTab")},
 		bio: {btn: document.querySelector ("#bioBtn"), tab: document.querySelector ("#bioTab")},
