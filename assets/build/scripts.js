@@ -10,13 +10,14 @@ var n=l.DOM("tr").DOM("td")
 n.innerHTML=e.year,n.onclick=i(e.year)}d[e.year].push(e)}function t(e){var n=u.DOM("div.hidden"),t=n.IMG(e.src)
 n.onclick=a(t,e),m[e.year].push(n)}function r(){for(var e=document.querySelectorAll("div.thumbnail-item"),n=0;n<e.length;n++)e[n].className="hidden"}function o(e){var n=m[e],t=Math.floor(Math.random()*n.length)
 c(n[t].children[0],d[e][t])
-for(var r=0;r<n.length;r++)n[r].className="thumbnail-item"}function i(e){return function(){r(),o(e)}}function c(e,n){f.innerHTML=n.title||"",g.innerHTML=n.copyright||"",s.innerHTML=n.dimensions||"",h.innerHTML=n.media||""
+for(var r=0;r<n.length;r++)n[r].className="thumbnail-item"}function i(e){return function(){r(),o(e)}}function c(e,n){s.innerHTML=n.title||"",f.innerHTML=n.copyright||"",g.innerHTML=n.dimensions||"",h.innerHTML=n.media||""
 var t=e.cloneNode()
-y.innerHTML="",y.appendChild(t),galleryEmpty=!1}function a(e,n){return function(){c(e,n)}}var l=document.querySelector("#galleryList"),u=document.querySelector("#thumbnail"),d={},m={}
+y.innerHTML="",y.appendChild(t),galleryEmpty=!1,t.onclick=function(){var e=t.cloneNode()
+v.className="modal show",e.style.height=window.innerHeight+"px",p.appendChild(e)}}function a(e,n){return function(){c(e,n)}}var l=document.querySelector("#galleryList"),u=document.querySelector("#thumbnail"),d={},m={}
 galleryEmpty=function(){var e=Object.keys(d),n=Math.floor(Math.random()*e.length)
 n=e[n],o(n)}
-var y=document.querySelector("#galleryMain"),f=document.querySelector("#image_title"),g=document.querySelector("#image_copyright"),s=document.querySelector("#image_dimensions"),h=document.querySelector("#image_media")
-e()}function runCvConfig(){var e=document.querySelector("#cvContainer"),n="CV.pdf"
+var y=document.querySelector("#galleryMain"),s=document.querySelector("#image_title"),f=document.querySelector("#image_copyright"),g=document.querySelector("#image_dimensions"),h=document.querySelector("#image_media"),v=document.querySelector("#modal"),p=document.querySelector("#modal-content")
+v.onclick=function(){v.className="modal",p.innerHTML=null},e()}function runCvConfig(){var e=document.querySelector("#cvContainer"),n="CV.pdf"
 PDFJS.workerSrc="pdf.worker.js",PDFJS.getDocument(n).then(function(n){n.getPage(1).then(function(n){cvConfig=function(){var t=n.getViewport(1),r=e.clientWidth/t.width,t=n.getViewport(r),o=document.querySelector("#CV"),i=o.getContext("2d")
 o.height=t.height,o.width=t.width
 var c={canvasContext:i,viewport:t}

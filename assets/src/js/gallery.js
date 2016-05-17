@@ -70,6 +70,9 @@ function galleryConfig () {
 	var copyright = document.querySelector ("#image_copyright");
 	var dimensions = document.querySelector ("#image_dimensions");
 	var media = document.querySelector ("#image_media");
+	var modal = document.querySelector ("#modal");
+	var content = document.querySelector ("#modal-content");
+	modal.onclick = function () { modal.className = "modal"; content.innerHTML = null; };
 	function showImage (img, data) {
 			title.innerHTML = data.title || "";
 			copyright.innerHTML = data.copyright || "";
@@ -79,6 +82,12 @@ function galleryConfig () {
 			main.innerHTML = "";
 			main.appendChild (clone);
 			galleryEmpty = false;
+			clone.onclick = function () {
+				var c2 = clone.cloneNode ();
+				modal.className = "modal show";
+				c2.style.height = window.innerHeight + "px";
+				content.appendChild (c2);
+			}
 	}
 	// wrap showImage for events
 	function imgOnclickEvt (img, data) {
