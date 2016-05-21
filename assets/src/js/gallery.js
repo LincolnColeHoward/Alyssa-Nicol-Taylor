@@ -51,6 +51,7 @@ function galleryConfig () {
 	}
 	// show all images for a year
 	function showYear (year) {
+		ga('send', 'event', 'GalleryYear', 'open', year);
 		var divs = display [year];
 		var rand = Math.floor (Math.random () * divs.length);
 		showImage (divs [rand].children [0], index [year][rand]);
@@ -74,6 +75,7 @@ function galleryConfig () {
 	var content = document.querySelector ("#modal-content");
 	modal.onclick = function () { modal.className = "modal"; content.innerHTML = null; };
 	function showImage (img, data) {
+			ga('send', 'event', 'Gallery', 'show', data.title);
 			title.innerHTML = data.title || "";
 			copyright.innerHTML = data.copyright || "";
 			dimensions.innerHTML = data.dimensions || "";
@@ -83,6 +85,7 @@ function galleryConfig () {
 			main.appendChild (clone);
 			galleryEmpty = false;
 			clone.onclick = function () {
+				ga('send', 'event', 'Photo', 'enlarge', data.title);
 				var c2 = clone.cloneNode ();
 				modal.className = "modal show";
 				c2.style.height = window.innerHeight + "px";

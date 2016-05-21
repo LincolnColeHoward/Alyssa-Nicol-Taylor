@@ -2,6 +2,9 @@ var cvConfig = null;
 //initial code stolen from mozilla!
 //thanks!
 function runCvConfig () {
+	document.querySelector ("#cvDownload").onclick = function () {
+		ga('send', 'event', 'CV', 'download', "CV.pdf");
+	};
 	//
 	// get the container for the CV
 	//
