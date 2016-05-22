@@ -90,5 +90,6 @@ canvas {
 }
 .modal-content {
 	margin: 0;
+	vertical-align: middle;
 	text-align: center;
 }

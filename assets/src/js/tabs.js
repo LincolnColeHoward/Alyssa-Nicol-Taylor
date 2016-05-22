@@ -18,9 +18,10 @@ function tabConfig () {
 	};
 	var active = "bio";
 	function activate (name) {
-		tabs [active].btn.className = "";
+		ga ("send", "pageview", "#" + name + "-tab");
+		tabs [active].btn.className = "text-muted";
 		tabs [active].tab.className = "hidden";
-		tabs [name].btn.className = "active";
+		tabs [name].btn.className = "text-primary";
 		tabs [name].tab.className = "container-fluid tab";
 		active = name;
 	}

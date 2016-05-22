@@ -62,9 +62,10 @@ function tabConfig () {
 	};
 	var active = "bio";
 	function activate (name) {
-		tabs [active].btn.className = "";
+		ga ("send", "pageview", "#" + name + "-tab");
+		tabs [active].btn.className = "text-muted";
 		tabs [active].tab.className = "hidden";
-		tabs [name].btn.className = "active";
+		tabs [name].btn.className = "text-primary";
 		tabs [name].tab.className = "container-fluid tab";
 		active = name;
 	}
@@ -165,7 +166,14 @@ function galleryConfig () {
 				ga('send', 'event', 'Photo', 'enlarge', data.title);
 				var c2 = clone.cloneNode ();
 				modal.className = "modal show";
-				c2.style.height = window.innerHeight + "px";
+				function adjust () {
+					if (window.orientation === 0)
+						c2.style.width = window.innerWidth + "px";
+					else
+						c2.style.height = window.innerHeight + "px";
+				}
+				adjust ();
+				window.addEventListener ("orientationChange", adjust, false);
 				content.appendChild (c2);
 			}
 	}
