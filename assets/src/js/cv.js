@@ -1,15 +1,21 @@
-var cvConfig = null;
+var cvConfig = function () {
+	cvConfig.one ();
+	cvConfig.two ();
+}
 //initial code stolen from mozilla!
 //thanks!
 function runCvConfig () {
 	document.querySelector ("#cvDownload").onclick = function () {
-		ga('send', 'event', 'CV', 'download', "CV.pdf");
+		// ga('send', 'event', 'CV', 'download', "CV.pdf");
 	};
 	//
 	// get the container for the CV
 	//
 	var container = document.querySelector ("#cvContainer");
-	
+	var canvas1 = document.querySelector ("#CV1");
+	var context1 = canvas1.getContext ("2d");
+	var canvas2 = document.querySelector ("#CV2");
+	var context2 = canvas2.getContext ("2d");
 	// 
 	// If absolute URL from the remote server is provided, configure the CORS
 	// header on that server.
@@ -31,27 +37,48 @@ function runCvConfig () {
 	//
 	// Asynchronous download PDF
 	//
-	PDFJS.getDocument (url).then (function getPdfHelloWorld (pdf) {
+	PDFJS.getDocument (url).then (function (pdf) {
 	  //
 	  // Fetch the first page
 	  //
-	  pdf.getPage (1).then(function getPageHelloWorld (page) {
-	    cvConfig = function () {
+	  pdf.getPage (1).then(function (page) {
+	    cvConfig.one = function () {
 		    var viewport = page.getViewport (1);
 		    var scale = container.clientWidth / viewport.width;
 		    var viewport = page.getViewport (scale);
 		    //
 		    // Prepare canvas using PDF page dimensions
 		    //
-		    var canvas = document.querySelector ("#CV");
-		    var context = canvas.getContext ("2d");
-		    canvas.height = viewport.height;
-		    canvas.width = viewport.width;
+		    canvas1.height = viewport.height;
+		    canvas1.width = viewport.width;
 		    //
 		    // Render PDF page into canvas context
 		    //
 		    var renderContext = {
-		      canvasContext: context,
+		      canvasContext: context1,
+		      viewport: viewport
+		    };
+		    page.render (renderContext);
+		 	}
+		});
+		//
+	  // Fetch the first page
+	  //
+	  pdf.getPage (2).then(function (page) {
+	    cvConfig.two = function () {
+		    var viewport = page.getViewport (1);
+		    var scale = container.clientWidth / viewport.width;
+		    var viewport = page.getViewport (scale);
+		    //
+		    // Prepare canvas using PDF page dimensions
+		    //
+		    canvas2.height = viewport.height;
+		    canvas2.width = viewport.width;
+		    //
+		    // Render PDF page into canvas context
+		    //
+		    var renderContext = {
+		      canvasContext: context2,
 		      viewport: viewport
 		    };
 		    page.render (renderContext);

@@ -13,12 +13,14 @@ function tabConfig () {
 	window.addEventListener ("resize", setTabHeight, false);
 	var tabs = {
 		gallery: {btn: document.querySelector ("#galleryBtn"), tab: document.querySelector ("#galleryTab")},
+		graphic: {btn: document.querySelector ("#graphicBtn"), tab: document.querySelector ("#graphicTab")},
 		bio: {btn: document.querySelector ("#bioBtn"), tab: document.querySelector ("#bioTab")},
-		cv: {btn: document.querySelector ("#cvBtn"), tab: document.querySelector ("#cvTab")}
+		cv: {btn: document.querySelector ("#cvBtn"), tab: document.querySelector ("#cvTab")},
+		contact: {btn: document.querySelector ("#contactBtn"), tab: document.querySelector ("#contactTab")}
 	};
 	var active = "bio";
 	function activate (name) {
-		ga ("send", "pageview", "#" + name + "-tab");
+		// ga ("send", "pageview", "#" + name + "-tab");
 		tabs [active].btn.className = "text-muted";
 		tabs [active].tab.className = "hidden";
 		tabs [name].btn.className = "text-primary";
