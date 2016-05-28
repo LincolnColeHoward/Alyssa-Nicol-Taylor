@@ -2,6 +2,7 @@ var cvConfig = function () {
 	cvConfig.one ();
 	cvConfig.two ();
 }
+window.addEventListener ("resize", cvConfig, false);
 //initial code stolen from mozilla!
 //thanks!
 function runCvConfig () {

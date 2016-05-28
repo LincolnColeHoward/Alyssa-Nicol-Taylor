@@ -11,9 +11,6 @@
 	<body>
 
 		<div id="modal" class="modal">
-			<div id="modal-content" class="modal-content">
-				
-			</div>
 		</div>
 
 		<nav id="nav" class="navbar navbar-fixed-top">
@@ -21,17 +18,44 @@
 	      <div class="navbar-header">
 	        <a id="homeBtn" class="navbar-brand">Alyssa Nicol Taylor</a>
 	      </div>
-	      <div id="navbar" class="navbar-collapse collapse">
+	      <div id="navbar" class="hidden">
 	        <ul class="nav navbar-nav">
 		        <li id="bioBtn"><a class="text-muted">Bio</a></li>
-	          <li id="graphicBtn"><a class="text-muted">Paintings</a></li>
-	          <li id="galleryBtn"><a class="text-muted">Graphic Art</a></li>
+	          <li id="galleryBtn"><a class="text-muted">Paintings</a></li>
+	          <li id="graphicBtn"><a class="text-muted">Graphic Art</a></li>
 	          <li id="cvBtn"><a class="text-muted">CV</a></li>
 	          <li id="contactBtn"><a class="text-muted">Contact</a></li>
 	        </ul>
 	      </div>
 	    </div>
 		</nav>
+
+		<div id="contactTab" class="hidden">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+				<form role="form">
+					<div class="form-group">
+						<label>Name</label>
+						<input id="contactName" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<input id="contactEmail" type="email" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Subject</label>
+						<input id="contactSubject" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Message</label>
+					<textarea id="contactMessage" class="expander form-control"></textarea>
+					</div>
+				</form>
+				<hr style="margin: 20px">
+				<div class="form-group">
+					<button id="contactSubmit" class="btn btn-primary btn-block">Submit</button>
+				</div>
+			</div>
+		</div>
 
 		<div id="cvTab" class="hidden">
 			<div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5">
@@ -51,12 +75,12 @@
 		
 		<div id="galleryTab" class="hidden">
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<table id="galleryList">
+				<table id="galleryList" class="galleryList">
 					
 				</table>
 			</div>
 			<div id="image_container" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<table id="image_data">
+				<table id="image_data" class="image_data">
 					<tr>
 						<td id="image_title"></td>
 						<td id="image_copyright"></td>
@@ -67,9 +91,9 @@
 					</tr>
 				</table>
 				<br>
-				<div id="galleryMain"></div>
+				<div id="galleryMain" class="galleryMain"></div>
 			</div>
-			<div id="thumbnail" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<div id="thumbnail" class="thumbnail col-xs-3 col-sm-3 col-md-3 col-lg-3">
 				
 			</div>
 		</div>
@@ -80,8 +104,8 @@
 					
 				</table>
 			</div>
-			<div id="graphic_container" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<table id="graphic_data">
+			<div id="graphic_container" class="graphic_container" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<table id="graphic_data" class="image_data">
 					<tr>
 						<td id="graphic_title"></td>
 						<td id="graphic_copyright"></td>
@@ -92,9 +116,9 @@
 					</tr>
 				</table>
 				<br>
-				<div id="graphicMain"></div>
+				<div id="graphicMain" class="galleryMain"></div>
 			</div>
-			<div id="graphic_thumbnail" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<div id="graphic_thumbnail" class="thumbnail col-xs-3 col-sm-3 col-md-3 col-lg-3">
 				
 			</div>
 		</div>
@@ -112,6 +136,7 @@
 		<script src="reset.js"></script>
 		<script src="gallery.js"></script>
 		<script src="cv.js"></script>
+		<script src="contact.js"></script>
 		<script src="tabs.js"></script>
 	</body>
 </html>

@@ -40,3 +40,34 @@ function GET (route, cb, err) {
 	}
 	xhr.send ();
 }
+// post
+function POST (route, data, cb, err) {
+	var xhr = new XMLHttpRequest ();
+	xhr.open ("POST", route);
+	xhr.setRequestHeader ("Content-Type", "application/json");
+	xhr.onload = function () {
+		if (xhr.status === 201) {
+			if (!this.response) return cb ();
+			if (cb) cb (JSON.parse (this.response));
+		} else {
+			if (err) err (xhr.status);
+		}
+	}
+	xhr.send (JSON.stringify (data));
+}
+// expanding textarea elements
+function Expander (textarea) {
+	textarea.addEventListener ("keyup", function () {
+		this.style.height = 0;
+		this.style.height = this.scrollHeight + "px";
+	}, false);
+}
+document.addEventListener("DOMContentLoaded", function () {
+	var txts = document.querySelectorAll ("textarea.expander")
+	for (var i = 0; i < txts.length; i++)
+		Expander (txts [i]);
+}, false);
+document.querySelector ("#modal").onclick = function () {
+	this.className = modal;
+	this.innerHTML = "";
+}

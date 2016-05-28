@@ -5,6 +5,12 @@ function galleryConfig () {
 	var thumbnail = document.querySelector ("#thumbnail");
 	// index images and displays by year
 	var index = {};
+	var years = [];
+	years.insert = function (y, e) {
+		for (var i = 0;i < this.length; i++)
+			if (y < this [i].year) return this.splice (i, 0, {year: y, element: e});
+		this.push ({year: y, element: e});
+	}
 	var display = {};
 	// obvious method
 	function loadContent () {
@@ -18,16 +24,23 @@ function galleryConfig () {
 			}
 		});
 	}
-	// index a gallery
+	// index a gallery, insert into array
 	function setIndex (gallery) {
 		if (!index [gallery.year]) {
 			index [gallery.year] = [];
 			display [gallery.year] = [];
-			var td = yearlist.DOM ("tr").DOM ("td");
+			var tr = DOM ("tr");
+			var td = tr.DOM ("td");
 			td.innerHTML = gallery.year;
 			td.onclick = yearOnclickEvt (gallery.year);
+			years.insert (gallery.year, tr);
 		}
 		index [gallery.year].push (gallery);
+	}
+	// 
+	function showIndexes () {
+		for (var i = 0; i < years.length; i++)
+			yearlist.appendChild (years [i].element);
 	}
 	// separate logic for creating the thumbnail 
 	function createThumbnailItem (gallery) {
@@ -38,6 +51,7 @@ function galleryConfig () {
 	}
 	// create an initial image function
 	galleryEmpty = function () {
+		showIndexes ();
 		var yearOpts = Object.keys (index);
 		var i = Math.floor (Math.random () * yearOpts.length);
 		i = yearOpts [i];
@@ -72,8 +86,6 @@ function galleryConfig () {
 	var dimensions = document.querySelector ("#image_dimensions");
 	var media = document.querySelector ("#image_media");
 	var modal = document.querySelector ("#modal");
-	var content = document.querySelector ("#modal-content");
-	modal.onclick = function () { modal.className = "modal"; content.innerHTML = null; };
 	function showImage (img, data) {
 			// ga('send', 'event', 'Gallery', 'show', data.title);
 			title.innerHTML = data.title || "";
@@ -89,14 +101,26 @@ function galleryConfig () {
 				var c2 = clone.cloneNode ();
 				modal.className = "modal show";
 				function adjust () {
-					if (window.orientation === 0)
-						c2.style.width = window.innerWidth + "px";
-					else
-						c2.style.height = window.innerHeight + "px";
+					var calc = {
+						w: img.width * modal.clientHeight / img.height,
+						h: modal.clientHeight,
+						x: 0,
+						y: 0
+					}
+					if (calc.w > modal.clientWidth) {
+						calc.h = calc.h * modal.clientWidth / calc.w;
+						calc.w = modal.clientWidth;
+						calc.y = (modal.clientHeight - calc.h) / 2;
+					} else {
+						calc.x = (modal.clientWidth - calc.w) / 2;
+					}
+					c2.style.width = calc.w + "px";
+					c2.style.height = calc.h + "px";
+					c2.style.left = calc.x + "px";
+					c2.style.top = calc.y + "px";
 				}
 				adjust ();
-				window.addEventListener ("orientationChange", adjust, false);
-				content.appendChild (c2);
+				modal.appendChild (c2);
 			}
 	}
 	// wrap showImage for events

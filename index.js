@@ -17,5 +17,7 @@ app.use (express.static ("assets/src/js"));
 app.use (express.static ("assets/src/css"));
 
 app.use (require ("./data/images"));
+app.use (require ("./data/graphics"));
+app.use (require ("./data/contact"));
 
 app.listen (80);

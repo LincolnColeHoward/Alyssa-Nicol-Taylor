@@ -11,11 +11,10 @@ function update () {
 			file: input [i][0],
 			src: "images/" + i,
 			title: input [i][1],
-			description: input [i][2],
-			copyright: input [i][3],
-			year: input [i][4],
-			media: input [i][5],
-			dimensions: input [i][6]
+			copyright: input [i][2],
+			year: input [i][3],
+			media: input [i][4],
+			dimensions: input [i][5]
 		});
 	}
 }
