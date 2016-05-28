@@ -86,6 +86,8 @@ function galleryConfig () {
 	var dimensions = document.querySelector ("#image_dimensions");
 	var media = document.querySelector ("#image_media");
 	var modal = document.querySelector ("#modal");
+	var adjust = function () {};
+	window.addEventListener ("resize", adjust, false);
 	function showImage (img, data) {
 			// ga('send', 'event', 'Gallery', 'show', data.title);
 			title.innerHTML = data.title || "";
@@ -100,7 +102,7 @@ function galleryConfig () {
 				// ga('send', 'event', 'Photo', 'enlarge', data.title);
 				var c2 = clone.cloneNode ();
 				modal.className = "modal show";
-				function adjust () {
+				adjust = function () {
 					var calc = {
 						w: img.width * modal.clientHeight / img.height,
 						h: modal.clientHeight,

@@ -12,7 +12,7 @@ function tabConfig () {
 	// setTabHeight ();
 	var tabs = {
 		gallery: {btn: document.querySelector ("#galleryBtn"), tab: document.querySelector ("#galleryTab")},
-		graphic: {btn: document.querySelector ("#graphicBtn"), tab: document.querySelector ("#graphicTab")},
+		// graphic: {btn: document.querySelector ("#graphicBtn"), tab: document.querySelector ("#graphicTab")},
 		bio: {btn: document.querySelector ("#bioBtn"), tab: document.querySelector ("#bioTab")},
 		cv: {btn: document.querySelector ("#cvBtn"), tab: document.querySelector ("#cvTab")},
 		contact: {btn: document.querySelector ("#contactBtn"), tab: document.querySelector ("#contactTab")}
@@ -31,7 +31,7 @@ function tabConfig () {
 	tabs.gallery.btn.onclick = function () {activate ("gallery"); if (galleryEmpty) galleryEmpty ()};
 	tabs.bio.btn.onclick = function () {activate ("bio")};
 	tabs.cv.btn.onclick = function () {activate ("cv"); cvConfig ()};
-	tabs.graphic.btn.onclick = function () {activate ("graphic"); if (graphicEmpty) graphicEmpty ()};
+	// tabs.graphic.btn.onclick = function () {activate ("graphic"); if (graphicEmpty) graphicEmpty ()};
 	tabs.contact.btn.onclick = function () {activate ("contact")};
 	// for opening tab selector
 	function open () {

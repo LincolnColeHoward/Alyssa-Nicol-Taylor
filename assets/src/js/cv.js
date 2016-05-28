@@ -1,6 +1,6 @@
 var cvConfig = function () {
-	cvConfig.one ();
-	cvConfig.two ();
+	this.one ();
+	this.two ();
 }
 window.addEventListener ("resize", cvConfig, false);
 //initial code stolen from mozilla!
@@ -63,7 +63,7 @@ function runCvConfig () {
 		 	}
 		});
 		//
-	  // Fetch the first page
+	  // Fetch the second page
 	  //
 	  pdf.getPage (2).then(function (page) {
 	    cvConfig.two = function () {

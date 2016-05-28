@@ -71,3 +71,24 @@ document.querySelector ("#modal").onclick = function () {
 	this.className = modal;
 	this.innerHTML = "";
 }
+function flashMessage (text) {
+	var modal = document.querySelector ("#modal");
+	var area = modal.DOM ("textarea");
+	area.setAttribute ("readonly", "true");
+	area.value = text;
+	modal.className = "modal show";
+	var adjust = function () {
+		var calc = {
+			w: area.scrollWidth,
+			h: area.scrollHeight
+		}
+		calc.x = (modal.clientWidth - calc.w) / 2;
+		calc.y = (modal.clientHeight - calc.h) / 2;
+		area.style.width = calc.w + "px";
+		area.style.height = calc.h + "px";
+		area.style.left = calc.x + "px";
+		area.style.top = calc.y + "px";
+	}
+	adjust ();
+	return area;
+}

@@ -14,11 +14,9 @@ function contactConfig () {
 			form [prop].value = "";
 		}
 		POST ("/contact", data, function success () {
-			modal.DOM ("div.text-center").innerHTML = "Thanks for the message - we will get back to you shortly!";
-			modal.className = "modal show";
+			flashMessage ("Thanks for the message - we will get back to you shortly!").classList.add ("text-success");
 		}, function err () {
-			modal.DOM ("div.text-center").innerHTML = "Uh oh- something went wrong!";
-			modal.className = "modal show";
+			flashMessage ("Uh oh - something went wrong!").classList.add ("text-danger");
 		});
 	}, false);
 }
