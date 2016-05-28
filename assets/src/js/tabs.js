@@ -19,7 +19,7 @@ function tabConfig () {
 	};
 	var active = "bio";
 	function activate (name) {
-		// ga ("send", "pageview", "#" + name + "-tab");
+		ga ("send", "pageview", "#" + name + "-tab");
 		close ();
 		tabs [active].btn.className = "text-muted";
 		tabs [active].tab.className = "hidden";

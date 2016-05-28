@@ -13,8 +13,12 @@ app.get ("/", function (req, res) {
 //  	maxage: "1728000000"
 // }));
 
-app.use (express.static ("assets/src/js"));
-app.use (express.static ("assets/src/css"));
+app.use (express.static ("assets/src/js", {
+ 	maxage: "1728000000"
+}));
+app.use (express.static ("assets/src/css", {
+ 	maxage: "1728000000"
+}));
 
 app.use (require ("./data/images"));
 app.use (require ("./data/graphics"));
