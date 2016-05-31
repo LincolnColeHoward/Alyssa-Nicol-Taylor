@@ -1,4 +1,5 @@
 var cvConfig = function () {
+	AQ ("CV", "View", "PDF");
 	cvConfig.one ();
 	cvConfig.two ();
 }
@@ -7,7 +8,7 @@ window.addEventListener ("resize", cvConfig, false);
 //thanks!
 function runCvConfig () {
 	document.querySelector ("#cvDownload").onclick = function () {
-		ga('send', 'event', 'CV', 'download', "CV.pdf");
+		AQ ("CV", "Download", "PDF");
 	};
 	//
 	// get the container for the CV

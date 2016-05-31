@@ -63,9 +63,12 @@ function galleryConfig () {
 		for (var i = 0; i < all.length; i++)
 			all [i].className = "hidden";
 	}
+	// count the number of times a user selects a year
+	var yearcount = 0;
 	// show all images for a year
 	function showYear (year) {
-		ga('send', 'event', 'GalleryYear', 'open gallery', year);
+		yearcount++;
+		AQ ("Year", "Select", year + "", yearcount + "");
 		var divs = display [year];
 		var rand = Math.floor (Math.random () * divs.length);
 		showImage (divs [rand].children [0], index [year][rand]);
@@ -88,42 +91,45 @@ function galleryConfig () {
 	var modal = document.querySelector ("#modal");
 	var adjust = function () {};
 	window.addEventListener ("resize", adjust, false);
+	// count the number of times a user selects an image
+	var imagecount = 0;
 	function showImage (img, data) {
-			ga('send', 'event', 'GalleryImage', 'show', data.title);
-			title.innerHTML = data.title || "";
-			copyright.innerHTML = data.copyright || "";
-			dimensions.innerHTML = data.dimensions || "";
-			media.innerHTML = data.media || "";
-			var clone = img.cloneNode ();
-			main.innerHTML = "";
-			main.appendChild (clone);
-			galleryEmpty = false;
-			clone.onclick = function () {
-				ga('send', 'event', 'GalleryPhoto', 'enlarge', data.title);
-				var c2 = clone.cloneNode ();
-				modal.className = "modal show";
-				adjust = function () {
-					var calc = {
-						w: img.width * modal.clientHeight / img.height,
-						h: modal.clientHeight,
-						x: 0,
-						y: 0
-					}
-					if (calc.w > modal.clientWidth) {
-						calc.h = calc.h * modal.clientWidth / calc.w;
-						calc.w = modal.clientWidth;
-						calc.y = (modal.clientHeight - calc.h) / 2;
-					} else {
-						calc.x = (modal.clientWidth - calc.w) / 2;
-					}
-					c2.style.width = calc.w + "px";
-					c2.style.height = calc.h + "px";
-					c2.style.left = calc.x + "px";
-					c2.style.top = calc.y + "px";
+		imagecount++;
+		AQ ("Image", "Select", data.title, imagecount + "");
+		title.innerHTML = data.title || "";
+		copyright.innerHTML = data.copyright || "";
+		dimensions.innerHTML = data.dimensions || "";
+		media.innerHTML = data.media || "";
+		var clone = img.cloneNode ();
+		main.innerHTML = "";
+		main.appendChild (clone);
+		galleryEmpty = false;
+		clone.onclick = function () {
+			// ga('send', 'event', 'GalleryPhoto', 'enlarge', data.title);
+			var c2 = clone.cloneNode ();
+			modal.className = "modal show";
+			adjust = function () {
+				var calc = {
+					w: img.width * modal.clientHeight / img.height,
+					h: modal.clientHeight,
+					x: 0,
+					y: 0
 				}
-				adjust ();
-				modal.appendChild (c2);
+				if (calc.w > modal.clientWidth) {
+					calc.h = calc.h * modal.clientWidth / calc.w;
+					calc.w = modal.clientWidth;
+					calc.y = (modal.clientHeight - calc.h) / 2;
+				} else {
+					calc.x = (modal.clientWidth - calc.w) / 2;
+				}
+				c2.style.width = calc.w + "px";
+				c2.style.height = calc.h + "px";
+				c2.style.left = calc.x + "px";
+				c2.style.top = calc.y + "px";
 			}
+			adjust ();
+			modal.appendChild (c2);
+		}
 	}
 	// wrap showImage for events
 	function imgOnclickEvt (img, data) {

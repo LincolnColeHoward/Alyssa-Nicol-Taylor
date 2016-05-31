@@ -1,5 +1,8 @@
 function tabConfig () {
-	var marginTop = document.querySelector ("#nav").clientHeight * 1.25;
+	// count the number of times a user changes tabs
+	var tabcount = 0;
+	// add a stylesheet that sets the margin
+	var marginTop = document.querySelector ("#nav").clientHeight * 1.35;
 	var tabHeight = document.querySelectorAll ("head") [0].DOM ("style");
 	tabHeight.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
 	// function setTabHeight () {
@@ -19,7 +22,8 @@ function tabConfig () {
 	};
 	var active = "bio";
 	function activate (name) {
-		ga ("send", "pageview", "#" + name + "-tab");
+		tabcount++;
+		AQ ("Tabs", "Select", name, tabcount);
 		close ();
 		tabs [active].btn.className = "text-muted";
 		tabs [active].tab.className = "hidden";
@@ -35,13 +39,15 @@ function tabConfig () {
 	tabs.contact.btn.onclick = function () {activate ("contact")};
 	// for opening tab selector
 	function open () {
+		AQ ("Tabs", "Open", "Navbar");
 		document.querySelector ("#navbar").className = "navbar-collapse collapse";
 		document.querySelector ("#homeBtn").onclick = close;
 	}
 	function close () {
+		AQ ("Tabs", "Close", "Navbar");
 		document.querySelector ("#navbar").className = "hidden";
 		document.querySelector ("#homeBtn").onclick = open;
 	}
-	document.querySelector ("#homeBtn").onclick = open;
+	document.querySelector ("#homeBtn").onclick;
 }
 tabConfig ();
