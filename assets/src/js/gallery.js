@@ -77,21 +77,37 @@ function galleryConfig () {
 			yearDisplay.innerHTML = years [yearIndex].year;
 			showYear (years [yearIndex].year);
 			var hammertime = new Hammer (document.querySelector ("#galleryTab"));
-			hammertime.on ("swipeleft", function () {
+			function goleft () {
 				if (yearIndex < years.length - 1) {
 					hideAll ();
 					yearIndex++;
 					showYear (years [yearIndex].year);
 					yearDisplay.innerHTML = years [yearIndex].year;
+					if (yearIndex === 1)
+						document.querySelector ("#mobleft").classList.remove ("hidden");
+					if (yearIndex === years.length - 1)
+						document.querySelector ("#mobright").classList.add ("hidden");
 				}
-			});
-			hammertime.on ("swiperight", function () {
+			}
+			function goright () {
 				if (yearIndex > 0) {
 					hideAll ();
 					yearIndex--;
 					showYear (years [yearIndex].year);
 					yearDisplay.innerHTML = years [yearIndex].year;
 				}
+				if (yearIndex === 0)
+					document.querySelector ("#mobleft").classList.add ("hidden");
+				if (yearIndex === years.length - 2)
+					document.querySelector ("#mobright").classList.remove ("hidden");
+			}
+			document.querySelector ("#mobleft").onclick = goright;
+			document.querySelector ("#mobright").onclick = goleft;
+			hammertime.on ("swipeleft", function () {
+				goleft ();
+			});
+			hammertime.on ("swiperight", function () {
+				goright ();
 			});
 		}
 	}

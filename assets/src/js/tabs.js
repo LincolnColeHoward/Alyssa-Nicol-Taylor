@@ -2,10 +2,10 @@ function tabConfig () {
 	// count the number of times a user changes tabs
 	var tabcount = 0;
 	// add a stylesheet that sets the margin
-	var marginTop = document.querySelector ("#nav").clientHeight * 1.35;
+	var marginTop = document.querySelector ("#nav").clientHeight;
 	var tabHeight = document.querySelectorAll ("head") [0].DOM ("style");
 	function setTabHeight () {
-		var marginTop = document.querySelector ("#nav").clientHeight * 1.25;
+		var marginTop = document.querySelector ("#nav").clientHeight;
 		var ss = DOM ("style");
 		ss.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
 		document.querySelectorAll ("head") [0].replaceChild (ss, tabHeight);

@@ -115,3 +115,6 @@ textarea.expander {
 	overflow: hidden;
 	resize: none;
 }
+.largearrow {
+	font-size: 130%;
+}
