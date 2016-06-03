@@ -21,6 +21,5 @@ node_modules
 .npm
 
 # specifics
-images
 email.json
 ssl

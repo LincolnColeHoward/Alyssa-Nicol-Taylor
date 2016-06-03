@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>window.mobile = true;</script>
+		<title>Alyssa Nicol Taylor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+		<link rel="Stylesheet" href="font-awesome.css">
+		<link rel="Stylesheet" href="bootstrap.css">
+		<link rel="Stylesheet" href="style.css">
+		<script src="pdf.js"></script>
+		<script src="hammer.js"></script>
+	</head>
+	<body>
+
+		<div id="modal" class="modal">
+		</div>
+
+		<nav id="nav" class="navbar navbar-static-top">
+			<div class="container-fluid">
+	      <div class="navbar-header">
+	        <a id="homeBtn" class="navbar-brand"><i class="fa fa-bars" aria-hidden="true"></i> <span style="margin-left:10px;">Alyssa Nicol Taylor</span></a>
+      	</div>
+      </div>
+	    <div id="navbar" class="hidden">  
+	      <div class="navbar-collapse navbar">
+	        <ul class="nav navbar-nav">
+		        <li id="bioBtn"><a class="text-muted">Bio</a></li>
+	          <li id="galleryBtn"><a class="text-muted">Paintings</a></li>
+	          <!-- <li id="graphicBtn"><a class="text-muted">Graphic Art</a></li> -->
+	          <li id="cvBtn"><a class="text-muted">CV</a></li>
+	          <li id="contactBtn"><a class="text-muted">Contact</a></li>
+	        </ul>
+	      </div>
+	    </div>
+		</nav>
+
+		<div id="contactTab" class="hidden">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+				<form role="form">
+					<div class="form-group">
+						<label>Name</label>
+						<input id="contactName" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<input id="contactEmail" type="email" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Subject</label>
+						<input id="contactSubject" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Message</label>
+					<textarea id="contactMessage" class="expander form-control"></textarea>
+					</div>
+				</form>
+				<hr style="margin: 20px">
+				<div class="form-group">
+					<button id="contactSubmit" class="btn btn-primary btn-block">Submit</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="cvTab" class="hidden">
+			<div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5">
+				<a id="cvDownload" class="btn btn-primary btn-block" href="CV.pdf">Download</a>
+			</div>
+			<div id="cvContainer" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+				<canvas id="CV1"></canvas>
+				<canvas id="CV2"></canvas>
+			</div>
+		</div>
+
+		<div id="bioTab" class="hidden">
+			<div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+				<b>Alyssa Taylor</b> was born in 1989 in Orlando. In 2013, she was accepted into the Communication Arts degree program at Virginia Commonwealth University. Taylor has also been in various important exhibitions including “Off the Chain” at Quirk Gallery, Richmond, Virginia. She was a transparent watercolor instructor at Hunter Forest School of Fine Art. This year she looks to attend South Carolina State Parks Artist in Residence 2016 program. Upcoming shows include “Legends Tribute” at Epicure Café, Fairfax, Virginia. Taylor currently lives and works in Washington, DC.
+			</div>
+		</div>
+		
+		<div id="galleryTab" class="hidden">
+			<div id="galleryList" class="hidden"></div>
+			<div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<p id="galleryYearMob" class="text-center" style="margin: 0; padding: 0;"></p>
+			</div>
+			<br>
+			<div id="image_container" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<table id="image_data" class="image_data">
+					<tr>
+						<td id="image_title"></td>
+						<td id="image_copyright"></td>
+					</tr>
+					<tr>
+						<td id="image_dimensions"></td>
+						<td id="image_media"></td>
+					</tr>
+				</table>
+				<br>
+				<div id="galleryMain" class="galleryMain"></div>
+			</div>
+			<div id="thumbnail" class="thumbnail col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<table id="galleryList" class="galleryList">
+					
+				</table>
+			</div>
+		</div>
+
+		<div id="graphicTab" class="hidden">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<table id="graphicList">
+					
+				</table>
+			</div>
+			<div id="graphic_container" class="graphic_container" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<table id="graphic_data" class="image_data">
+					<tr>
+						<td id="graphic_title"></td>
+						<td id="graphic_copyright"></td>
+					</tr>
+					<tr>
+						<td id="graphic_dimensions"></td>
+						<td id="graphic_media"></td>
+					</tr>
+				</table>
+				<br>
+				<div id="graphicMain" class="galleryMain"></div>
+			</div>
+			<div id="graphic_thumbnail" class="thumbnail col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				
+			</div>
+		</div>
+		<!--
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-78108759-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+		-->
+		<script src="analytics.js"></script>
+		<script src="reset.js"></script>
+		<script src="gallery.js"></script>
+		<script src="cv.js"></script>
+		<script src="contact.js"></script>
+		<script src="tabs.js"></script>
+	</body>
+</html>
