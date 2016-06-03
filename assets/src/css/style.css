@@ -8,13 +8,17 @@ body {
 	overflow-y: scroll;
 }
 #nav {
-	z-index: 9;
+	z-index: 2;
 	background-color: rgba(230,230,230,0.7);
 	border-radius: 0;
 	border: 0;
 }
 #nav * {
 	background-color: rgba(0,0,0,0);
+}
+.thumbnail {
+	border: 0;
+	border-radius: 0;
 }
 .thumbnail div {
 	position: relative;

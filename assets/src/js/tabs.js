@@ -4,15 +4,15 @@ function tabConfig () {
 	// add a stylesheet that sets the margin
 	var marginTop = document.querySelector ("#nav").clientHeight * 1.35;
 	var tabHeight = document.querySelectorAll ("head") [0].DOM ("style");
-	tabHeight.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
-	// function setTabHeight () {
-	// 	var marginTop = document.querySelector ("#nav").clientHeight * 1.25;
-	// 	var ss = DOM ("style");
-	// 	ss.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
-	// 	document.querySelectorAll ("head") [0].replaceChild (ss, tabHeight);
-	// 	tabHeight = ss;
-	// }
-	// setTabHeight ();
+	function setTabHeight () {
+		var marginTop = document.querySelector ("#nav").clientHeight * 1.25;
+		var ss = DOM ("style");
+		ss.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
+		document.querySelectorAll ("head") [0].replaceChild (ss, tabHeight);
+		tabHeight = ss;
+	}
+	setTabHeight ();
+	window.addEventListener ("resize", setTabHeight, false);
 	var tabs = {
 		gallery: {btn: document.querySelector ("#galleryBtn"), tab: document.querySelector ("#galleryTab")},
 		// graphic: {btn: document.querySelector ("#graphicBtn"), tab: document.querySelector ("#graphicTab")},
@@ -20,7 +20,7 @@ function tabConfig () {
 		cv: {btn: document.querySelector ("#cvBtn"), tab: document.querySelector ("#cvTab")},
 		contact: {btn: document.querySelector ("#contactBtn"), tab: document.querySelector ("#contactTab")}
 	};
-	var active = "bio";
+	var active = "gallery";
 	function activate (name) {
 		tabcount++;
 		AQ ("Tabs", "Select", name, tabcount);
@@ -32,7 +32,7 @@ function tabConfig () {
 		active = name;
 	}
 	activate (active);
-	tabs.gallery.btn.onclick = function () {activate ("gallery"); if (galleryEmpty) galleryEmpty ()};
+	tabs.gallery.btn.onclick = function () {activate ("gallery")};
 	tabs.bio.btn.onclick = function () {activate ("bio")};
 	tabs.cv.btn.onclick = function () {activate ("cv"); cvConfig ()};
 	// tabs.graphic.btn.onclick = function () {activate ("graphic"); if (graphicEmpty) graphicEmpty ()};
@@ -40,7 +40,7 @@ function tabConfig () {
 	// for opening tab selector
 	function open () {
 		AQ ("Tabs", "Open", "Navbar");
-		document.querySelector ("#navbar").className = "navbar-collapse collapse";
+		document.querySelector ("#navbar").className = "container-fluid";
 		document.querySelector ("#homeBtn").onclick = close;
 	}
 	function close () {

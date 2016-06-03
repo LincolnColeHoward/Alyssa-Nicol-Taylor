@@ -1,8 +1,14 @@
-var galleryEmpty;
 function galleryConfig () {
 	// find the necessary dom elements
 	var yearlist = document.querySelector ("#galleryList");
 	var thumbnail = document.querySelector ("#thumbnail");
+	// send an image over when clicked
+	var main = document.querySelector ("#galleryMain");
+	var title = document.querySelector ("#image_title");
+	var copyright = document.querySelector ("#image_copyright");
+	var dimensions = document.querySelector ("#image_dimensions");
+	var media = document.querySelector ("#image_media");
+	var modal = document.querySelector ("#modal");
 	// index images and displays by year
 	var index = {};
 	var years = [];
@@ -16,10 +22,18 @@ function galleryConfig () {
 	function loadContent () {
 		// get the number of galleries to load
 		GET ("/galleries/length", function (data) {
+			var n = 0;
+			function counted () {
+				n++;
+				if (n === data) {
+					galleryEmpty ();
+				}
+			}
 			for (var i = 0; i < data; i++) {
 				GET ("/galleries/" + i, function (data) {
 					setIndex (data);
 					createThumbnailItem (data);
+					counted ();
 				});
 			}
 		});
@@ -50,12 +64,36 @@ function galleryConfig () {
 		display [gallery.year].push (div);
 	}
 	// create an initial image function
-	galleryEmpty = function () {
+	function galleryEmpty () {
 		showIndexes ();
 		var yearOpts = Object.keys (index);
 		var i = Math.floor (Math.random () * yearOpts.length);
 		i = yearOpts [i];
-		showYear (i);
+		if (!mobile) showYear (i);
+		if (mobile) {
+			var yearDisplay = document.querySelector ("#galleryYearMob");
+			var yearIndex = 0;
+			console.log (years [0].year);
+			yearDisplay.innerHTML = years [yearIndex].year;
+			showYear (years [yearIndex].year);
+			var hammertime = new Hammer (document.querySelector ("#galleryTab"));
+			hammertime.on ("swipeleft", function () {
+				if (yearIndex < years.length - 1) {
+					hideAll ();
+					yearIndex++;
+					showYear (years [yearIndex].year);
+					yearDisplay.innerHTML = years [yearIndex].year;
+				}
+			});
+			hammertime.on ("swiperight", function () {
+				if (yearIndex > 0) {
+					hideAll ();
+					yearIndex--;
+					showYear (years [yearIndex].year);
+					yearDisplay.innerHTML = years [yearIndex].year;
+				}
+			});
+		}
 	}
 	// hide all items in the thumbnail
 	function hideAll () {
@@ -82,15 +120,7 @@ function galleryConfig () {
 			showYear (year);
 		}
 	}
-	// send an image over when clicked
-	var main = document.querySelector ("#galleryMain");
-	var title = document.querySelector ("#image_title");
-	var copyright = document.querySelector ("#image_copyright");
-	var dimensions = document.querySelector ("#image_dimensions");
-	var media = document.querySelector ("#image_media");
-	var modal = document.querySelector ("#modal");
 	var adjust = function () {};
-	window.addEventListener ("resize", adjust, false);
 	// count the number of times a user selects an image
 	var imagecount = 0;
 	function showImage (img, data) {
@@ -128,6 +158,7 @@ function galleryConfig () {
 				c2.style.top = calc.y + "px";
 			}
 			adjust ();
+			window.onresize = adjust;
 			modal.appendChild (c2);
 		}
 	}

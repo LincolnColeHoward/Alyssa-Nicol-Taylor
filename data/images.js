@@ -24,12 +24,10 @@ var express = require ("express");
 var router = express.Router ();
 
 router.get ("/galleries", function (req, res) {
-	res.setHeader ("Cache-Control", "max-age=172800");
 	res.status (200).json (data);
 });
 
 router.get ("/galleries/length", function (req, res) {
-	res.setHeader ("Cache-Control", "max-age=1728000");
 	res.status (200).json (data.length); 
 });
 

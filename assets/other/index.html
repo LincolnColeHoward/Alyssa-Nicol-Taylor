@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script>
+			if (typeof window.orientation !== 'undefined') {
+				window.location = "/mobile.html";
+			} else {
+				window.mobile = false;
+			}
+		</script>
 		<title>Alyssa Nicol Taylor</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 		<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+		<link rel="Stylesheet" href="font-awesome.css">
 		<link rel="Stylesheet" href="bootstrap.css">
 		<link rel="Stylesheet" href="style.css">
 		<script src="pdf.js"></script>
@@ -16,7 +24,7 @@
 		<nav id="nav" class="navbar navbar-fixed-top">
 			<div class="container-fluid">
 	      <div class="navbar-header">
-	        <a id="homeBtn" class="navbar-brand">Alyssa Nicol Taylor</a>
+	        <a id="homeBtn" class="navbar-brand"><i class="fa fa-bars" aria-hidden="true"></i> <span style="margin-left:10px;">Alyssa Nicol Taylor</span></a>
 	      </div>
 	      <div id="navbar" class="hidden">
 	        <ul class="nav navbar-nav">
