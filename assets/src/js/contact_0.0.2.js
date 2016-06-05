@@ -9,12 +9,12 @@ function contactConfig () {
 	var modal = document.querySelector ("#modal");
 	submit.addEventListener ("click", function () {
 		var data = {};
-		for (var prop in form) {
+		for (var prop in form)
 			data [prop] = form [prop].value;
-			form [prop].value = "";
-		}
 		POST ("/contact", data, function success () {
 			flashMessage ("Thanks for the message - we will get back to you shortly!").classList.add ("text-success");
+			for (var prop in form)
+				form [prop].value = "";
 		}, function err () {
 			flashMessage ("Uh oh - something went wrong!").classList.add ("text-danger");
 		});

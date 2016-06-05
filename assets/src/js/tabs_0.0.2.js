@@ -3,9 +3,11 @@ function tabConfig () {
 	var tabcount = 0;
 	// add a stylesheet that sets the margin
 	var marginTop = document.querySelector ("#nav").clientHeight;
+	if (!mobile) marginTop += 25;
 	var tabHeight = document.querySelectorAll ("head") [0].DOM ("style");
 	function setTabHeight () {
 		var marginTop = document.querySelector ("#nav").clientHeight;
+		if (!mobile) marginTop += 25;
 		var ss = DOM ("style");
 		ss.innerHTML = "div.tab {margin-top:" + marginTop + "px}";
 		document.querySelectorAll ("head") [0].replaceChild (ss, tabHeight);
