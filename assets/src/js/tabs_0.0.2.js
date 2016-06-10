@@ -51,5 +51,7 @@ function tabConfig () {
 		document.querySelector ("#homeBtn").onclick = open;
 	}
 	document.querySelector ("#homeBtn").onclick;
+	activate ("gallery");
+	runGallery ();
 }
 tabConfig ();

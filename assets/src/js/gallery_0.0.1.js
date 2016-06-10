@@ -1,4 +1,9 @@
 function galleryConfig () {
+	Element.prototype.IMG = function (src) {
+		var img =	this.DOM ("img");
+		img.setAttribute ("src", src);
+		return img;
+	}
 	// find the necessary dom elements
 	var yearlist = document.querySelector ("#galleryList");
 	var thumbnail = document.querySelector ("#thumbnail");
@@ -21,22 +26,29 @@ function galleryConfig () {
 	// obvious method
 	function loadContent () {
 		// get the number of galleries to load
-		GET ("/galleries/length", function (data) {
-			var n = 0;
-			function counted () {
-				n++;
-				if (n === data) {
-					galleryEmpty ();
+		var opts = {
+			cb: function (data) {
+				var n = 0;
+				function counted () {
+					n++;
+					if (n === data) {
+						galleryEmpty ();
+					}
+				}
+				for (var i = 0; i < data; i++) {
+					var _opts = {
+						id: i,
+						cb: function (data) {
+							setIndex (data);
+							createThumbnailItem (data);
+							counted ();
+						}
+					}
+					GET ("/galleries", _opts);
 				}
 			}
-			for (var i = 0; i < data; i++) {
-				GET ("/galleries/" + i, function (data) {
-					setIndex (data);
-					createThumbnailItem (data);
-					counted ();
-				});
-			}
-		});
+		}
+		GET ("/galleries/length", opts);
 	}
 	// index a gallery, insert into array
 	function setIndex (gallery) {

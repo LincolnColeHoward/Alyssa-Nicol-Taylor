@@ -16,6 +16,18 @@ body {
 #nav * {
 	background-color: rgba(0,0,0,0);
 }
+.navbar-header:first-child {
+	vertical-align: middle;
+}
+#CV1, #CV2 {
+	border: 1px solid #000;
+}
+#CV2 {
+	margin-bottom: 10px;
+}
+#cvContainer {
+	padding: 0;
+}
 .thumbnail {
 	border: 0;
 	border-radius: 0;
@@ -84,40 +96,29 @@ canvas {
 	margin: 0;
 	padding: 0;
 }
-.modal {
-	display: none;
-  position: fixed;
-  z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: rgba(0,0,0,0.9);
-}
-.modal.show {
-	display: block;
-}
-.modal > img {
-	position: fixed;
-}
-.modal > textarea {
-	position: fixed;
-	font-size: 125%;
-	background-color: rgba(255,255,255,0.8);
-	resize: none;
-	outline: none;
-	border: none;
-	padding: 20px;
-	border-radius: 4px;
-}
-textarea.expander {
-	overflow: hidden;
-	resize: none;
-}
 .largearrow {
-	font-size: 150%;
+	font-size: 200%;
 }
 .largearrow:active {
-	color: #111s;
+	color: #111;
+}
+.tab {
+	padding: 0;
+	padding-bottom: 40px;
+}
+div.datacard {
+	border-radius: 4px;
+	display: table;
+	vertical-align: middle;
+	border: 1px solid #000;
+}
+p.datacard {
+  vertical-align: middle;
+  display: table-cell;   
+	text-align: center;
+}
+.fh {
+	line-height: 50px;
+	font-size: 24px;
+	margin-left: 5px;
 }

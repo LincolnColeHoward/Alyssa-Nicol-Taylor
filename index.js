@@ -11,6 +11,7 @@ app.use (require ("compression") ());
 var thoughtful = require ("thoughtful");
 app.use (thoughtful.nodelib);
 app.use (thoughtful.hit);
+app.use (require ("reset.js"));
 
 app.use (express.static ("assets/other"));
 app.get ("/", function (req, res) {
@@ -28,15 +29,17 @@ app.use (require ("./data/images"));
 app.use (require ("./data/graphics"));
 app.use (require ("./data/contact"));
 
-var forward = express ();
-forward.all ("*", function (req, res) {
-	res.redirect ("https://antaylorco.com" + req.url);
-});
+app.listen (80);
 
-forward.listen (80);
+// var forward = express ();
+// forward.all ("*", function (req, res) {
+// 	res.redirect ("https://antaylorco.com" + req.url);
+// });
 
-var server = https.createServer ({
-	key: fs.readFileSync ("./ssl/cert.key"),
-	cert: fs.readFileSync ("./ssl/antaylorco.com/OtherServer/2_antaylorco.com.crt")
-}, app);
-server.listen (443);
+// forward.listen (80);
+
+// var server = https.createServer ({
+// 	key: fs.readFileSync ("./ssl/cert.key"),
+// 	cert: fs.readFileSync ("./ssl/antaylorco.com/OtherServer/2_antaylorco.com.crt")
+// }, app);
+// server.listen (443);
