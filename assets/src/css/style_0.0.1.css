@@ -107,7 +107,7 @@ canvas {
 	padding-bottom: 40px;
 }
 div.datacard {
-	border-radius: 4px;
+	background-color: rgba(230,230,230,0.7);
 	display: table;
 	vertical-align: middle;
 	border: 1px solid #000;

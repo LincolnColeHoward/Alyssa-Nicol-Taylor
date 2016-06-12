@@ -14,7 +14,6 @@ function mosaic () {
 				var c2 = img.cloneNode ();
 				flashMessage (c2);
 				function adjust () {
-					var modal = document.querySelector ("div.modal");
 					var calc = {
 						w: img.width * modal.clientHeight / img.height,
 						h: modal.clientHeight,
@@ -50,10 +49,11 @@ function mosaic () {
 			function showCard () {
 				var old = document.querySelector ("div.datacard");
 				if (old) old.hide ();
+				console.log (datacard);
 				datacard.style.height = img.clientHeight + "px";
 				datacard.style.width = ret.clientWidth + "px";
 				img.className = "hidden";
-				datacard.classList = "datacard";
+				datacard.className = "datacard";
 			}
 			function hideCard () {
 				datacard.className = "hidden";
@@ -66,7 +66,6 @@ function mosaic () {
 			var close = p.DOM ("button.btn.btn-default.btn-xs");
 			close.addEventListener ("click", hideCard, false);
 			close.innerHTML = "close";
-			img.addEventListener ("dblclick", enlarge, false);
 			img.addEventListener ("click", showCard, false);
 		}
 		return ret;
@@ -75,7 +74,7 @@ function mosaic () {
 		cb: function (galleries) {
 			runGallery = function () {
 				imageContainer.innerHTML = "";
-				if(!mobile) imageContainer.DOM ("div.col-md-3.col-lg-3");
+				if (!mobile) imageContainer.DOM ("div.col-md-3.col-lg-3");
 				var cols = [generateColumn (), generateColumn (), generateColumn ()];
 				for (var i = 0; i < galleries.length; i++) {
 					cols [i % 3].addGallery (galleries [i]);
