@@ -14,7 +14,7 @@ function mosaic () {
 				var c2 = img.cloneNode ();
 				flashMessage (c2);
 				function adjust () {
-					console.log ("h=" + modal.clientHeight, "w=" + clientWidth);
+					console.log ("h=" + modal.clientHeight, "w=" + modal.clientWidth);
 					var calc = {
 						w: img.width * modal.clientHeight / img.height,
 						h: modal.clientHeight,
