@@ -33,6 +33,7 @@ function mosaic () {
 					c2.style.top = calc.y + "px";
 				}
 				window.addEventListener ("resize", adjust, false);
+				window.addEventListener ("orientationchange", adjust, false);
 				adjust ();
 			}
 			var datacard = ret.DOM ("div.hidden");
