@@ -14,6 +14,7 @@ function mosaic () {
 				var c2 = img.cloneNode ();
 				flashMessage (c2);
 				function adjust () {
+					console.log ("h=" + modal.clientHeight, "w=" + clientWidth);
 					var calc = {
 						w: img.width * modal.clientHeight / img.height,
 						h: modal.clientHeight,
@@ -27,13 +28,13 @@ function mosaic () {
 					} else {
 						calc.x = (modal.clientWidth - calc.w) / 2;
 					}
+					console.log (calc);
 					c2.style.width = calc.w + "px";
 					c2.style.height = calc.h + "px";
 					c2.style.left = calc.x + "px";
 					c2.style.top = calc.y + "px";
 				}
 				window.addEventListener ("resize", adjust, false);
-				window.addEventListener ("orientationchange", adjust, false);
 				adjust ();
 			}
 			var datacard = ret.DOM ("div.hidden");
