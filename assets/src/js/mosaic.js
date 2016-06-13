@@ -13,10 +13,11 @@ function mosaic () {
 				hideCard ();
 				var c2 = img.cloneNode ();
 				flashMessage (c2);
+				var imgheight = img.height;
+				var imgwidth = img.width;
 				function adjust () {
-					console.log ("h=" + modal.clientHeight, "w=" + modal.clientWidth);
 					var calc = {
-						w: img.width * modal.clientHeight / img.height,
+						w: imgwidth * modal.clientHeight / imgheight,
 						h: modal.clientHeight,
 						x: 0,
 						y: 0
@@ -28,7 +29,6 @@ function mosaic () {
 					} else {
 						calc.x = (modal.clientWidth - calc.w) / 2;
 					}
-					console.log (calc);
 					c2.style.width = calc.w + "px";
 					c2.style.height = calc.h + "px";
 					c2.style.left = calc.x + "px";
