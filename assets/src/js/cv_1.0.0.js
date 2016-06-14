@@ -1,5 +1,4 @@
 var cvConfig = function () {
-	AQ ("CV", "View", "PDF");
 	cvConfig.one ();
 	cvConfig.two ();
 }
@@ -8,7 +7,8 @@ window.addEventListener ("resize", cvConfig, false);
 //thanks!
 function runCvConfig () {
 	document.querySelector ("#cvDownload").onclick = function () {
-		AQ ("CV", "Download", "PDF");
+		if (ga) ga ("send", "event", "CV", "download", "CV.pdf");
+		
 	};
 	//
 	// get the container for the CV
@@ -44,7 +44,6 @@ function runCvConfig () {
 	  // Fetch the first page
 	  //
 	  pdf.getPage (1).then(function (page) {
-	  	console.log (page);
 	    cvConfig.one = function () {
 		    var viewport = page.getViewport (1);
 		    var scale = container.clientWidth / viewport.width;
@@ -68,7 +67,6 @@ function runCvConfig () {
 	  // Fetch the second page
 	  //
 	  pdf.getPage (2).then(function (page) {
-	    console.log (page);
 	    cvConfig.two = function () {
 		    var viewport = page.getViewport (1);
 		    var scale = container.clientWidth / viewport.width;

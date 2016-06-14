@@ -24,14 +24,13 @@ function tabConfig () {
 	};
 	var active = "gallery";
 	function activate (name) {
-		tabcount++;
-		AQ ("Tabs", "Select", name, tabcount);
 		close ();
 		tabs [active].btn.className = "text-muted";
 		tabs [active].tab.className = "hidden";
 		tabs [name].btn.className = "text-primary";
 		tabs [name].tab.className = "container-fluid tab";
 		active = name;
+		if (ga) ga("send", "pageview", name);
 	}
 	activate (active);
 	tabs.gallery.btn.onclick = function () {activate ("gallery")};
@@ -41,12 +40,10 @@ function tabConfig () {
 	tabs.contact.btn.onclick = function () {activate ("contact")};
 	// for opening tab selector
 	function open () {
-		AQ ("Tabs", "Open", "Navbar");
 		document.querySelector ("#navbar").className = "container-fluid";
 		document.querySelector ("#homeBtn").onclick = close;
 	}
 	function close () {
-		AQ ("Tabs", "Close", "Navbar");
 		document.querySelector ("#navbar").className = "hidden";
 		document.querySelector ("#homeBtn").onclick = open;
 	}
