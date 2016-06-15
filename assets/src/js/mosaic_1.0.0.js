@@ -14,10 +14,9 @@ function mosaic () {
 			}, false);
 			function enlarge () {
 				hideCard ();
-				var c2 = img.cloneNode ();
-				flashMessage (c2);
 				var imgheight = img.height;
 				var imgwidth = img.width;
+				var c2 = img.cloneNode ();
 				function adjust () {
 					var calc = {
 						w: imgwidth * modal.clientHeight / imgheight,
@@ -37,8 +36,7 @@ function mosaic () {
 					c2.style.left = calc.x + "px";
 					c2.style.top = calc.y + "px";
 				}
-				window.addEventListener ("resize", adjust, false);
-				adjust ();
+				flashMessage (c2, adjust);
 				if (ga) ga ("send", "event", "Gallery", "enlarge", gallery.title);
 			}
 			var datacard = ret.DOM ("div.datacard.hidden");

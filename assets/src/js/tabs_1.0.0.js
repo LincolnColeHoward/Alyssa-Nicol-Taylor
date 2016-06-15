@@ -1,4 +1,4 @@
-function tabConfig () {
+function Tabs () {
 	// count the number of times a user changes tabs
 	var tabcount = 0;
 	// add a stylesheet that sets the margin
@@ -18,9 +18,9 @@ function tabConfig () {
 	var tabs = {
 		gallery: {btn: document.querySelector ("#galleryBtn"), tab: document.querySelector ("#galleryTab")},
 		// graphic: {btn: document.querySelector ("#graphicBtn"), tab: document.querySelector ("#graphicTab")},
+		// contact: {btn: document.querySelector ("#contactBtn"), tab: document.querySelector ("#contactTab")},
 		bio: {btn: document.querySelector ("#bioBtn"), tab: document.querySelector ("#bioTab")},
-		cv: {btn: document.querySelector ("#cvBtn"), tab: document.querySelector ("#cvTab")},
-		contact: {btn: document.querySelector ("#contactBtn"), tab: document.querySelector ("#contactTab")}
+		cv: {btn: document.querySelector ("#cvBtn"), tab: document.querySelector ("#cvTab")}
 	};
 	var active = "gallery";
 	function activate (name) {
@@ -32,12 +32,6 @@ function tabConfig () {
 		active = name;
 		if (ga) ga("send", "pageview", name);
 	}
-	activate (active);
-	tabs.gallery.btn.onclick = function () {activate ("gallery")};
-	tabs.bio.btn.onclick = function () {activate ("bio")};
-	tabs.cv.btn.onclick = function () {activate ("cv"); cvConfig ()};
-	// tabs.graphic.btn.onclick = function () {activate ("graphic"); if (graphicEmpty) graphicEmpty ()};
-	tabs.contact.btn.onclick = function () {activate ("contact")};
 	// for opening tab selector
 	function open () {
 		document.querySelector ("#navbar").className = "container-fluid";
@@ -48,7 +42,13 @@ function tabConfig () {
 		document.querySelector ("#homeBtn").onclick = open;
 	}
 	document.querySelector ("#homeBtn").onclick;
-	activate ("gallery");
+	tabs.gallery.btn.onclick = function () {activate ("gallery")};
+	tabs.bio.btn.onclick = function () {activate ("bio")};
+	tabs.cv.btn.onclick = function () {activate ("cv"); cvConfig ()};
+	tabs.gallery.tab.addEventListener ("click", close, false);
+	tabs.bio.tab.addEventListener ("click", close, false);
+	tabs.cv.tab.addEventListener ("click", close, false);
+	activate (active);
 	runGallery ();
 }
-tabConfig ();
+Tabs ();
