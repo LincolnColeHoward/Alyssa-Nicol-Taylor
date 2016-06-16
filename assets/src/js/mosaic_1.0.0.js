@@ -14,12 +14,10 @@ function mosaic () {
 			}, false);
 			function enlarge () {
 				hideCard ();
-				var imgheight = img.height;
-				var imgwidth = img.width;
 				var c2 = img.cloneNode ();
 				function adjust () {
 					var calc = {
-						w: imgwidth * modal.clientHeight / imgheight,
+						w: img.width * modal.clientHeight / img.height,
 						h: modal.clientHeight,
 						x: 0,
 						y: 0
