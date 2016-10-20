@@ -22,3 +22,5 @@ node_modules
 
 # specifics
 private
+ssl
+email.json
