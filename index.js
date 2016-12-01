@@ -31,7 +31,7 @@ forward.all ("*", function (req, res) {
 forward.listen (80);
 
 var server = https.createServer ({
-	key: fs.readFileSync ("/etc/letsencrypt/live/antaylorco.com/key.pem"),
+	key: fs.readFileSync ("/etc/letsencrypt/live/antaylorco.com/privkey.pem"),
 	cert: fs.readFileSync ("/etc/letsencrypt/live/antaylorco.com/cert.pem")
 }, app);
 server.listen (443);
