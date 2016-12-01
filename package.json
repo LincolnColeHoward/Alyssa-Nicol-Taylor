@@ -23,6 +23,7 @@
     "nodemailer": "^2.4.2",
     "reset.js": "github:lincolncolehoward/reset.js",
     "thoughtful": "github:lincolncolehoward/thoughtful",
-    "ua-parser": "^0.3.5"
+    "ua-parser": "^0.3.5",
+    "webcomponentsjs": "^1.0.2"
   }
 }

@@ -1,16 +1,10 @@
 // imports
-var mongoose = require ("mongoose");
-mongoose.connect ("mongodb://localhost/alyssa");
 var https = require ("https");
 var fs = require ("fs");
 var express = require ("express");
 var app = express ();
 app.use (require ("compression") ());
 
-// thoughtful
-var thoughtful = require ("thoughtful");
-app.use (thoughtful.nodelib);
-app.use (thoughtful.hit);
 app.use (require ("reset.js"));
 
 app.use (express.static ("assets/other"));
@@ -29,17 +23,15 @@ app.use (require ("./data/images"));
 app.use (require ("./data/graphics"));
 app.use (require ("./data/contact"));
 
-app.listen (80);
+var forward = express ();
+forward.all ("*", function (req, res) {
+	res.redirect ("https://antaylorco.com" + req.url);
+});
 
-// var forward = express ();
-// forward.all ("*", function (req, res) {
-// 	res.redirect ("https://antaylorco.com" + req.url);
-// });
+forward.listen (80);
 
-// forward.listen (80);
-
-// var server = https.createServer ({
-// 	key: fs.readFileSync ("./ssl/cert.key"),
-// 	cert: fs.readFileSync ("./ssl/antaylorco.com/OtherServer/2_antaylorco.com.crt")
-// }, app);
-// server.listen (443);
+var server = https.createServer ({
+	key: fs.readFileSync ("/etc/letsencrypt/live/antaylorco.com/key.pem"),
+	cert: fs.readFileSync ("/etc/letsencrypt/live/antaylorco.com/cert.pem")
+}, app);
+server.listen (443);
